@@ -45,6 +45,13 @@ body {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+@media (min-width: 64rem) {
+  html {
+    scroll-padding-top: 6rem;
+  }
 }
 
 /* Reduced motion */

@@ -81,17 +81,23 @@ export default function Footer() {
             <p className="text-center text-xs text-text-muted md:text-left">
               <span>{FOOTER.copyright}</span>
               <span className="footer-credit-dot" aria-hidden="true" />
+              <span>Designed &amp; Developed by </span>
               <a
-                href="https://wa.me/201002455834"
+                href="https://sysera.tech"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-credit-link rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-4 focus-visible:ring-offset-charcoal-700"
               >
-                Don Charisma :)
+                SysEra
               </a>
             </p>
             <p className="max-w-lg text-center text-xs text-text-muted md:text-right">
-              {FOOTER.disclaimer}
+              <a
+                href="/legal/disclosures"
+                className="rounded-sm transition-colors hover:text-gold-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-4 focus-visible:ring-offset-charcoal-700"
+              >
+                {FOOTER.disclaimer}
+              </a>
             </p>
           </div>
         </div>

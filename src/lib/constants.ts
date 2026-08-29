@@ -19,12 +19,14 @@ export const SITE_URL = 'https://auremcapital.com';
 // ------------------------------------------------------------
 
 export const NAV_LINKS = [
-  { label: 'About', href: '#about' },
-  { label: 'Markets', href: '#markets' },
-  { label: 'Intelligence', href: '#intelligence' },
-  { label: 'Approach', href: '#approach' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', href: '/#about' },
+  { label: 'Markets', href: '/#markets' },
+  { label: 'Intelligence', href: '/#intelligence' },
+  { label: 'Approach', href: '/#approach' },
+  { label: 'Contact', href: '/#contact' },
 ] as const;
+
+export const NAV_CTA = { label: 'Get Started', href: '/#lead-form' } as const;
 
 // ------------------------------------------------------------
 // Hero Section
@@ -171,9 +173,7 @@ export const CTA = {
 
 export const FOOTER = {
   tagline: 'Institutional-grade trading and market research.',
-  // PLACEHOLDER — replace with verified company disclaimers
-  disclaimer:
-    '[Company-specific disclaimers, regulatory information, and risk disclosures here]',
+  disclaimer: 'Legal & Risk Disclosures',
   copyright: '\u00A9 2026 Aurem Capital. All rights reserved.',
   socialLinks: [
     // PLACEHOLDER — replace with actual social media URLs

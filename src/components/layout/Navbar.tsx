@@ -3,12 +3,18 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
-import { NAV_LINKS, SITE_NAME } from '@/lib/constants'
+import { NAV_CTA, NAV_LINKS, SITE_NAME } from '@/lib/constants'
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  const closeMobileMenu = () => {
+    document.body.classList.remove('overflow-hidden')
+    setIsMobileMenuOpen(false)
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,7 +49,7 @@ export default function Navbar() {
       >
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex items-center justify-between h-20 lg:h-24">
-            <a href='#hero' className="flex-shrink-0" aria-label={`${SITE_NAME} home`}>
+            <Link href='/' className="flex-shrink-0" aria-label={`${SITE_NAME} home`}>
               <Image
                 src='/images/aurem-logo.png'
                 alt={SITE_NAME || 'Aurem Capital'}
@@ -53,7 +59,7 @@ export default function Navbar() {
                 className='h-12 lg:h-14 w-auto object-contain'
                 style={{ width: 'auto' }}
               />
-            </a>
+            </Link>
             
             <nav role='navigation' aria-label='Main navigation' className="hidden lg:block">
               <ul className="flex items-center space-x-8">
@@ -65,8 +71,8 @@ export default function Navbar() {
                   </li>
                 ))}
                 <li>
-                  <a href="#lead-form" className="text-sm font-medium text-gold-500 hover:text-gold-400 transition-colors duration-200">
-                    Get Started
+                  <a href={NAV_CTA.href} className="text-sm font-medium text-gold-500 hover:text-gold-400 transition-colors duration-200">
+                    {NAV_CTA.label}
                   </a>
                 </li>
               </ul>
@@ -92,7 +98,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 bg-charcoal-950/95 backdrop-blur-md z-40 lg:hidden"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={closeMobileMenu}
             />
             <motion.nav
               initial={{ opacity: 0, y: -20 }}
@@ -102,7 +108,7 @@ export default function Navbar() {
             >
               <div className="pointer-events-auto flex flex-col items-center space-y-6">
                 <button
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={closeMobileMenu}
                   className="absolute top-5 right-5 text-text-primary focus:outline-none p-2"
                   aria-label="Close menu"
                 >
@@ -112,18 +118,18 @@ export default function Navbar() {
                   <a
                     key={link.label}
                     href={link.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={closeMobileMenu}
                     className="text-2xl font-serif font-medium text-text-primary"
                   >
                     {link.label}
                   </a>
                 ))}
                 <a
-                  href="#lead-form"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  href={NAV_CTA.href}
+                  onClick={closeMobileMenu}
                   className="text-2xl font-serif font-medium text-gold-500"
                 >
-                  Get Started
+                  {NAV_CTA.label}
                 </a>
               </div>
             </motion.nav>
