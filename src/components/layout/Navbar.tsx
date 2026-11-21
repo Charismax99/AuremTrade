@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { NAV_CTA, NAV_LINKS, SITE_NAME } from '@/lib/constants'
+import { HomeLogoLink } from './HomeLogoLink'
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -43,10 +43,8 @@ export default function Navbar() {
         />
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex items-center justify-between h-20 lg:h-24">
-            <Link
-              href='/'
+            <HomeLogoLink
               className="group flex-shrink-0 rounded-md focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-gold-400"
-              aria-label={`${SITE_NAME} home`}
             >
               <Image
                 src='/images/aurem-logo.png'
@@ -57,7 +55,7 @@ export default function Navbar() {
                 className="h-12 w-auto object-contain lg:h-14 lg:scale-[1.18] lg:group-hover:drop-shadow-[0_0_6px_rgba(212,175,94,0.28)] lg:motion-safe:transition-[scale,filter] lg:motion-safe:duration-200 lg:motion-safe:group-hover:scale-[1.23]"
                 style={{ width: 'auto' }}
               />
-            </Link>
+            </HomeLogoLink>
             
             <nav role='navigation' aria-label='Main navigation' className="hidden lg:block">
               <ul className="flex items-center space-x-8">

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { BriefcaseBusiness, MessageCircle } from 'lucide-react';
 import { CTA, NAV_LINKS, FOOTER, SITE_NAME } from '@/lib/constants';
 import { Container } from '@/components/ui/Container';
+import { HomeLogoLink } from './HomeLogoLink';
 
 const SOCIAL_ICONS = {
   Linkedin: BriefcaseBusiness,
@@ -15,14 +16,18 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
           
           <div>
-            <Image
-              src='/images/aurem-logo.png'
-              alt={SITE_NAME || 'Aurem Capital'}
-              width={932}
-              height={515}
-              className='h-16 lg:h-20 w-auto object-contain'
-              style={{ width: 'auto' }}
-            />
+            <HomeLogoLink
+              className="block w-fit rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-400"
+            >
+              <Image
+                src='/images/aurem-logo.png'
+                alt={SITE_NAME || 'Aurem Capital'}
+                width={932}
+                height={515}
+                className='h-16 lg:h-20 w-auto object-contain'
+                style={{ width: 'auto' }}
+              />
+            </HomeLogoLink>
             <p className="text-sm text-text-secondary mt-5 max-w-xs">
               {FOOTER.tagline}
             </p>
