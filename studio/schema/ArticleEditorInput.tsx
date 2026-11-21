@@ -6,14 +6,41 @@ import { useRouter } from 'sanity/router';
 import { useDocumentPane } from 'sanity/structure';
 import { articlePath } from '../../src/lib/blog/config';
 import { validatePermalink } from './permalink';
+import './article-encouragement.css';
 
 export function ArticleEditorInput(props: ObjectInputProps) {
-  const { documentId, documentType } = useDocumentPane();
+  const { documentId, documentType, editState } = useDocumentPane();
   const slug = useFormValue(['slug', 'current']);
+  const publishedSlug = useFormValue(['publishedSlug']);
   const { isSyncing } = useSyncState(documentId, documentType);
   const { navigateIntent } = useRouter();
   const marker = useRef<HTMLSpanElement>(null);
   const [footerSlot, setFooterSlot] = useState<HTMLSpanElement | null>(null);
+  const [titleSlot, setTitleSlot] = useState<HTMLDivElement | null>(null);
+  const showEncouragement = !!editState?.ready && !editState.published && !publishedSlug;
+
+  useEffect(() => {
+    if (!showEncouragement) return;
+    const panel = marker.current?.closest('[data-testid="document-panel-form-view"]');
+    if (!panel) return;
+
+    const slot = document.createElement('div');
+    function placeEncouragement() {
+      const title = panel?.querySelector('[data-testid="document-panel-document-title"]');
+      const titleGroup = title?.parentElement;
+      if (!titleGroup || titleGroup.firstElementChild === slot) return;
+      titleGroup.prepend(slot);
+      setTitleSlot(slot);
+    }
+
+    const observer = new MutationObserver(placeEncouragement);
+    observer.observe(panel, { childList: true, subtree: true });
+    placeEncouragement();
+    return () => {
+      observer.disconnect();
+      slot.remove();
+    };
+  }, [showEncouragement]);
 
   useEffect(() => {
     const panel = marker.current?.closest('[data-testid="document-panel-form-view"]');
@@ -73,6 +100,10 @@ export function ArticleEditorInput(props: ObjectInputProps) {
   return (
     <>
       <span ref={marker} hidden />
+      {showEncouragement && titleSlot && createPortal(
+        <p className="article-encouragement" lang="ar" dir="rtl">عااااش زتونة <span aria-hidden="true">😂</span></p>,
+        titleSlot,
+      )}
       {props.renderDefault(props)}
       {footerSlot ? createPortal(preview, footerSlot) : preview}
     </>
