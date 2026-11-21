@@ -17,14 +17,9 @@ export default function Navbar() {
   }
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 80) {
-        setIsScrolled(true)
-      } else {
-        setIsScrolled(false)
-      }
-    }
-    window.addEventListener('scroll', handleScroll)
+    const handleScroll = () => setIsScrolled(window.scrollY > 80)
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -39,14 +34,13 @@ export default function Navbar() {
 
   return (
     <>
-      <header
-        role='banner'
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
-          isScrolled
-            ? 'bg-charcoal-700/90 backdrop-blur-lg border-b border-charcoal-600/50 shadow-lg shadow-black/20'
-            : 'bg-transparent'
-        }`}
-      >
+      <header role='banner' className="fixed inset-x-0 top-0 z-50">
+        <div
+          aria-hidden="true"
+          className={`pointer-events-none absolute inset-x-0 -bottom-3 top-0 -z-10 bg-charcoal-900/90 backdrop-blur-md [mask-image:linear-gradient(black_85%,transparent)] motion-safe:transition-opacity motion-safe:duration-300 motion-safe:ease-out ${
+            isScrolled ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex items-center justify-between h-20 lg:h-24">
             <Link
