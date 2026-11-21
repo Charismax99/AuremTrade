@@ -1,7 +1,13 @@
 import type { MetadataRoute } from 'next';
+import { articlePath, blogPath } from '@/lib/blog/config';
+import { getPublishedArticleLinks } from '@/lib/blog/content';
 import { SITE_URL } from '@/lib/constants';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const revalidate = 60;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const articles = await getPublishedArticleLinks();
+
   return [
     {
       url: SITE_URL,
@@ -15,5 +21,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.4,
     },
+    { url: `${SITE_URL}${blogPath}` },
+    ...articles.map(({ slug, updatedAt }) => ({
+      url: `${SITE_URL}${articlePath(slug)}`,
+      lastModified: updatedAt,
+    })),
   ];
 }

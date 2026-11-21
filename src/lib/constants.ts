@@ -11,8 +11,8 @@ export const SITE_TAGLINE = 'Where Insight Meets Opportunity';
 export const SITE_DESCRIPTION =
   'Trading, market research, market insights, and educational content for clients navigating global financial markets.';
 
-// PLACEHOLDER — replace with actual domain
-export const SITE_URL = 'https://auremcapital.com';
+// Set SITE_URL to the canonical origin on the production host.
+export const SITE_URL = new URL(process.env.SITE_URL || 'https://auremcapital.com').origin;
 
 // ------------------------------------------------------------
 // Navigation
@@ -23,6 +23,7 @@ export const NAV_LINKS = [
   { label: 'Markets', href: '/#markets' },
   { label: 'Intelligence', href: '/#intelligence' },
   { label: 'Approach', href: '/#approach' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/#contact' },
 ] as const;
 

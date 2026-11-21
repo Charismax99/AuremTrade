@@ -2,20 +2,28 @@
   "name": "aurem-capital",
   "version": "0.1.0",
   "private": true,
+  "workspaces": [
+    "studio"
+  ],
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --webpack",
+    "studio": "npm run dev --workspace aurem-blog-studio",
+    "studio:build": "npm run build --workspace aurem-blog-studio",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@portabletext/react": "^8.0.1",
+    "@sanity/image-url": "^2.2.0",
     "framer-motion": "^13.1.1",
     "lucide-react": "^1.35.0",
-    "next": "^16.3.3",
+    "next": "^16.4.6",
+    "next-sanity": "^13.5.1",
     "nodemailer": "^9.0.6",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
