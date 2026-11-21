@@ -53,6 +53,14 @@ export function getPublishedArticles() {
   );
 }
 
+export function getLatestPublishedArticles() {
+  return publicBlogClient.fetch<ArticleSummary[]>(
+    `*[${articleFilter}] | order(coalesce(firstPublishedAt, _createdAt) desc, _updatedAt desc, _id asc)[0...3] {${summaryFields}}`,
+    {},
+    publishedCache,
+  );
+}
+
 export function getPublishedArticleLinks() {
   return publicBlogClient.fetch<Pick<ArticleSummary, 'slug' | 'updatedAt'>[]>(
     `*[${articleFilter}] {"slug": slug.current, "updatedAt": _updatedAt}`,

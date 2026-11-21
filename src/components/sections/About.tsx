@@ -117,11 +117,6 @@ export function About() {
                 </g>
 
                 <path
-                  d="M638 100L613 119L631 123Z"
-                  fill="#E2C47A"
-                  fillOpacity="0.72"
-                />
-                <path
                   d="M74 418C160 383 210 327 284 344C366 363 420 254 496 276C574 298 604 178 638 100"
                   stroke="#D4AF5E"
                   strokeOpacity="0.16"
@@ -129,6 +124,18 @@ export function About() {
                   fill="none"
                   filter="url(#about-soft-glow)"
                 />
+                <motion.g
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ delay: 2.16, duration: 0.18, ease: 'easeOut' }}
+                >
+                  {/* Rotate to the final cubic tangent from (604, 178) to (638, 100). */}
+                  <g transform="translate(638 100) rotate(-66.45)" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M-11 -5L0 0L-11 5" stroke="#D4AF5E" strokeWidth="5" opacity="0.38" filter="url(#about-soft-glow)" />
+                    <path d="M-11 -5L0 0L-11 5" stroke="#E2C47A" strokeWidth="2.2" />
+                  </g>
+                </motion.g>
 
                 <g fill="#D4AF5E">
                   <circle cx="284" cy="344" r="3" fillOpacity="0.72" />
