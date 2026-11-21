@@ -82,7 +82,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     description: article.excerpt,
     mainEntityOfPage: canonical,
     url: canonical,
-    author: article.authorName ? { '@type': 'Person', name: article.authorName } : undefined,
+    author: article.authorName
+      ? { '@type': article.authorName === SITE_NAME ? 'Organization' : 'Person', name: article.authorName }
+      : undefined,
     datePublished: article.firstPublishedAt,
     dateModified: article.updatedAt,
     image: article.cover?.asset ? coverUrl(article.cover, 1200, 630) : undefined,
