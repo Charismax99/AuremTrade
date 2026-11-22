@@ -21,7 +21,7 @@ export function About() {
           </AnimatedSection>
           
           <AnimatedSection delay={0.2}>
-            <div className="aspect-square lg:aspect-[4/3] bg-charcoal-800 rounded-2xl border border-charcoal-600/50 overflow-hidden relative shadow-2xl shadow-black/20">
+            <div className="aspect-[4/3] bg-charcoal-800 rounded-2xl border border-charcoal-600/50 overflow-hidden relative shadow-2xl shadow-black/20">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_22%,rgba(198,149,59,0.09),transparent_34%),linear-gradient(145deg,rgba(14,14,14,0.15),rgba(8,8,8,0.72))]" />
               <svg
                 aria-hidden="true"
